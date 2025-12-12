@@ -1,8 +1,6 @@
 name: CI-Merged
 on: [push, pull_request]
-
 jobs:
-
   # ----------- Chemin 1 : SANS TDD -----------
   test_no_tdd:
     runs-on: ubuntu-latest
@@ -12,7 +10,6 @@ jobs:
         run: pip install -r requirements.txt
       - name: Tests SANS TDD
         run: pytest
-
   # ----------- Chemin 2 : AVEC TDD -----------
   lint:
     runs-on: ubuntu-latest
@@ -21,7 +18,6 @@ jobs:
       - run: pip install flake8
       - name: Lint
         run: flake8 .
-
   test_tdd:
     runs-on: ubuntu-latest
     needs: lint
@@ -31,7 +27,6 @@ jobs:
         run: pip install -r requirements.txt
       - name: Tests AVEC TDD
         run: pytest --maxfail=1 --disable-warnings -q
-
   build:
     runs-on: ubuntu-latest
     needs: test_tdd
@@ -39,7 +34,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build
         run: echo "Build OK"
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
