@@ -1,5 +1,6 @@
 from core.model import VirusModel
 
+
 def test_virus_positive():
     model = VirusModel()
     assert model.diagnose([1, 0, 1]) == 1
