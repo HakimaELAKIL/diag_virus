@@ -9,3 +9,4 @@ def test_virus_positive():
 def test_virus_negative():
     model = VirusModel()
     assert model.diagnose([-1, -2]) == 0
+    
